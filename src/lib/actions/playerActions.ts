@@ -130,3 +130,26 @@ export async function deletePlayer(id: string) {
   await prisma.player.delete({ where: { id } });
   revalidatePath("/admin/players");
 }
+
+export async function updatePlayer({
+  id,
+  name,
+  number,
+  teamId,
+}: {
+  id: string;
+  name: string;
+  number: number;
+  teamId: string;
+}) {
+  const player = await prisma.player.update({
+    where: { id },
+    data: {
+      name,
+      number,
+      teamId,
+    },
+  });
+  revalidatePath("/admin/players");
+  return player;
+}

@@ -1,7 +1,16 @@
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   getPlayers,
   createPlayer,
   deletePlayer,
+  updatePlayer,
 } from "@/lib/actions/playerActions";
 import { getTeams } from "@/lib/actions/teamActions";
 // import { Position } from "@prisma/client";
@@ -21,6 +30,17 @@ export default async function AdminPlayersPage() {
     if (!name || !number || !teamId) return;
     // await createPlayer({ name,number,position,teamId });
     await createPlayer({ name, number, teamId });
+  }
+
+  async function handleEdit(formData: FormData) {
+    "use server";
+
+    const id = formData.get("id") as string;
+    const name = formData.get("name") as string;
+    const number = parseInt(formData.get("number") as string);
+    const teamId = formData.get("teamId") as string;
+
+    await updatePlayer({ id, name, number, teamId });
   }
 
   async function handleDelete(formData: FormData) {
@@ -110,7 +130,72 @@ export default async function AdminPlayersPage() {
                 </td>
                 {/* <td className="py-3 px-4 text-gray-400">{player.position}</td> */}
                 <td className="py-3 px-4 text-gray-400">{player.team.name}</td>
-                <td className="py-3 px-4 text-right">
+                {/* <td className="py-3 px-4 text-right">
+                  <form action={handleDelete} className="inline">
+                    <input type="hidden" name="id" value={player.id} />
+                    <button
+                      type="submit"
+                      className="text-red-400 hover:text-red-300 text-xs"
+                    >
+                      Delete
+                    </button>
+                  </form>
+                </td> */}
+                <td className="py-3 px-4 text-right space-x-2">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="text-blue-400 hover:text-blue-300 text-xs">
+                        Edit
+                      </button>
+                    </DialogTrigger>
+
+                    <DialogContent className="bg-gray-900 border-gray-700 text-white">
+                      <DialogHeader>
+                        <DialogTitle>Edit Player</DialogTitle>
+                      </DialogHeader>
+
+                      <form action={handleEdit} className="flex flex-col gap-3">
+                        <input type="hidden" name="id" value={player.id} />
+
+                        <input
+                          name="name"
+                          defaultValue={player.name}
+                          className="px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg"
+                        />
+
+                        <input
+                          name="number"
+                          type="number"
+                          defaultValue={player.number}
+                          className="px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg"
+                        />
+
+                        <select
+                          name="teamId"
+                          defaultValue={player.teamId}
+                          className="px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg"
+                        >
+                          {teams.map((team) => (
+                            <option key={team.id} value={team.id}>
+                              {team.name}
+                            </option>
+                          ))}
+                        </select>
+                        <DialogClose
+                          type="submit"
+                          className="bg-green-600 hover:bg-green-700 rounded-lg px-3 py-2"
+                        >
+                          {/* <button
+                            type="submit"
+                            className="bg-green-600 hover:bg-green-700 rounded-lg px-3 py-2"
+                          > */}
+                          Save Changes
+                          {/* </button> */}
+                        </DialogClose>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+
                   <form action={handleDelete} className="inline">
                     <input type="hidden" name="id" value={player.id} />
                     <button
