@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MatchStatus {
+  UPCOMING
+  LIVE
+  FINISHED
+}
+
+enum EventType {
+  GOAL
+  ASSIST
+  YELLOW_CARD
+  RED_CARD
+}
+
+model Tournament {
+  id        String     @id @default(cuid())
+  name      String
+  season    String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  matches   Match[]
+  standings Standing[]
+}
+
+model Team {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  shortName   String
+  logo        String     @default("/default-logo.png")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  players     Player[]
+  homeMatches Match[]    @relation("HomeTeam")
+  awayMatches Match[]    @relation("AwayTeam")
+  standings   Standing[]
+}
+
+model Player {
+  id        String       @id @default(cuid())
+  name      String
+  number    Int
+  teamId    String
+  team      Team         @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  events    MatchEvent[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([teamId, number])
+}
+
+model Match {
+  id           String      @id @default(cuid())
+  tournamentId String
+  tournament   Tournament  @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  homeTeamId   String
+  homeTeam     Team        @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeamId   String
+  awayTeam     Team        @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  homeScore    Int         @default(0)
+  awayScore    Int         @default(0)
+  status       MatchStatus @default(UPCOMING)
+  date         DateTime
+  venue        String      @default("Main Stadium")
+  events       MatchEvent[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([status])
+  @@index([date])
+}
+
+model MatchEvent {
+  id       String    @id @default(cuid())
+  matchId  String
+  match    Match     @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  playerId String
+  player   Player    @relation(fields: [playerId], references: [id])
+  type     EventType
+  minute   Int
+  createdAt DateTime @default(now())
+
+  @@index([matchId])
+  @@index([playerId])
+}
+
+model Standing {
+  id           String     @id @default(cuid())
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  teamId       String
+  team         Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  played       Int        @default(0)
+  won          Int        @default(0)
+  drawn        Int        @default(0)
+  lost         Int        @default(0)
+  goalsFor     Int        @default(0)
+  goalsAgainst Int        @default(0)
+  goalDifference Int      @default(0)
+  points       Int        @default(0)
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([tournamentId, teamId])
+  @@index([tournamentId])
+}
