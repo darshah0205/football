@@ -93,7 +93,7 @@ export default async function AdminPlayersPage() {
             <tr className="border-b border-gray-700 text-gray-400">
               <th className="text-left py-3 px-4">#</th>
               <th className="text-left py-3 px-4">Name</th>
-              <th className="text-left py-3 px-4">Position</th>
+              {/* <th className="text-left py-3 px-4">Position</th> */}
               <th className="text-left py-3 px-4">Team</th>
               <th className="text-right py-3 px-4">Actions</th>
             </tr>
