@@ -130,7 +130,7 @@ export default function MatchCard({ match }: { match: MatchWithTeams }) {
               </div>
             </div>
           )}
-        <p className="text-xs text-gray-500 mt-2">{match.venue}</p>
+        <p className="text-xs text-gray-500 mt-2">Venue: {match.venue}</p>
       </div>
     </Link>
   );
