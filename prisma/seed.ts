@@ -39,52 +39,222 @@ async function main() {
   // Create Players
   const playersData = [
     // Manchester City
-    { name: "Ederson", number: 31, position: "GOALKEEPER" as const, team: "MCI" },
-    { name: "Kyle Walker", number: 2, position: "DEFENDER" as const, team: "MCI" },
-    { name: "Ruben Dias", number: 3, position: "DEFENDER" as const, team: "MCI" },
-    { name: "Kevin De Bruyne", number: 17, position: "MIDFIELDER" as const, team: "MCI" },
-    { name: "Phil Foden", number: 47, position: "MIDFIELDER" as const, team: "MCI" },
-    { name: "Erling Haaland", number: 9, position: "FORWARD" as const, team: "MCI" },
+    {
+      name: "Ederson",
+      number: 31,
+      position: "GOALKEEPER" as const,
+      team: "MCI",
+    },
+    {
+      name: "Kyle Walker",
+      number: 2,
+      position: "DEFENDER" as const,
+      team: "MCI",
+    },
+    {
+      name: "Ruben Dias",
+      number: 3,
+      position: "DEFENDER" as const,
+      team: "MCI",
+    },
+    {
+      name: "Kevin De Bruyne",
+      number: 17,
+      position: "MIDFIELDER" as const,
+      team: "MCI",
+    },
+    {
+      name: "Phil Foden",
+      number: 47,
+      position: "MIDFIELDER" as const,
+      team: "MCI",
+    },
+    {
+      name: "Erling Haaland",
+      number: 9,
+      position: "FORWARD" as const,
+      team: "MCI",
+    },
 
     // Real Madrid
-    { name: "Thibaut Courtois", number: 1, position: "GOALKEEPER" as const, team: "RMA" },
-    { name: "Dani Carvajal", number: 2, position: "DEFENDER" as const, team: "RMA" },
-    { name: "Antonio Rudiger", number: 22, position: "DEFENDER" as const, team: "RMA" },
-    { name: "Luka Modric", number: 10, position: "MIDFIELDER" as const, team: "RMA" },
-    { name: "Jude Bellingham", number: 5, position: "MIDFIELDER" as const, team: "RMA" },
-    { name: "Vinicius Jr", number: 7, position: "FORWARD" as const, team: "RMA" },
+    {
+      name: "Thibaut Courtois",
+      number: 1,
+      position: "GOALKEEPER" as const,
+      team: "RMA",
+    },
+    {
+      name: "Dani Carvajal",
+      number: 2,
+      position: "DEFENDER" as const,
+      team: "RMA",
+    },
+    {
+      name: "Antonio Rudiger",
+      number: 22,
+      position: "DEFENDER" as const,
+      team: "RMA",
+    },
+    {
+      name: "Luka Modric",
+      number: 10,
+      position: "MIDFIELDER" as const,
+      team: "RMA",
+    },
+    {
+      name: "Jude Bellingham",
+      number: 5,
+      position: "MIDFIELDER" as const,
+      team: "RMA",
+    },
+    {
+      name: "Vinicius Jr",
+      number: 7,
+      position: "FORWARD" as const,
+      team: "RMA",
+    },
 
     // Bayern Munich
-    { name: "Manuel Neuer", number: 1, position: "GOALKEEPER" as const, team: "BAY" },
-    { name: "Joshua Kimmich", number: 6, position: "DEFENDER" as const, team: "BAY" },
-    { name: "Dayot Upamecano", number: 2, position: "DEFENDER" as const, team: "BAY" },
-    { name: "Jamal Musiala", number: 42, position: "MIDFIELDER" as const, team: "BAY" },
-    { name: "Leroy Sane", number: 10, position: "MIDFIELDER" as const, team: "BAY" },
-    { name: "Harry Kane", number: 9, position: "FORWARD" as const, team: "BAY" },
+    {
+      name: "Manuel Neuer",
+      number: 1,
+      position: "GOALKEEPER" as const,
+      team: "BAY",
+    },
+    {
+      name: "Joshua Kimmich",
+      number: 6,
+      position: "DEFENDER" as const,
+      team: "BAY",
+    },
+    {
+      name: "Dayot Upamecano",
+      number: 2,
+      position: "DEFENDER" as const,
+      team: "BAY",
+    },
+    {
+      name: "Jamal Musiala",
+      number: 42,
+      position: "MIDFIELDER" as const,
+      team: "BAY",
+    },
+    {
+      name: "Leroy Sane",
+      number: 10,
+      position: "MIDFIELDER" as const,
+      team: "BAY",
+    },
+    {
+      name: "Harry Kane",
+      number: 9,
+      position: "FORWARD" as const,
+      team: "BAY",
+    },
 
     // FC Barcelona
-    { name: "Marc-Andre ter Stegen", number: 1, position: "GOALKEEPER" as const, team: "BAR" },
-    { name: "Ronald Araujo", number: 4, position: "DEFENDER" as const, team: "BAR" },
-    { name: "Jules Kounde", number: 23, position: "DEFENDER" as const, team: "BAR" },
+    {
+      name: "Marc-Andre ter Stegen",
+      number: 1,
+      position: "GOALKEEPER" as const,
+      team: "BAR",
+    },
+    {
+      name: "Ronald Araujo",
+      number: 4,
+      position: "DEFENDER" as const,
+      team: "BAR",
+    },
+    {
+      name: "Jules Kounde",
+      number: 23,
+      position: "DEFENDER" as const,
+      team: "BAR",
+    },
     { name: "Pedri", number: 8, position: "MIDFIELDER" as const, team: "BAR" },
     { name: "Gavi", number: 6, position: "MIDFIELDER" as const, team: "BAR" },
-    { name: "Robert Lewandowski", number: 9, position: "FORWARD" as const, team: "BAR" },
+    {
+      name: "Robert Lewandowski",
+      number: 9,
+      position: "FORWARD" as const,
+      team: "BAR",
+    },
 
     // Liverpool
-    { name: "Alisson", number: 1, position: "GOALKEEPER" as const, team: "LIV" },
-    { name: "Virgil van Dijk", number: 4, position: "DEFENDER" as const, team: "LIV" },
-    { name: "Trent Alexander-Arnold", number: 66, position: "DEFENDER" as const, team: "LIV" },
-    { name: "Dominik Szoboszlai", number: 8, position: "MIDFIELDER" as const, team: "LIV" },
-    { name: "Alexis Mac Allister", number: 10, position: "MIDFIELDER" as const, team: "LIV" },
-    { name: "Mohamed Salah", number: 11, position: "FORWARD" as const, team: "LIV" },
+    {
+      name: "Alisson",
+      number: 1,
+      position: "GOALKEEPER" as const,
+      team: "LIV",
+    },
+    {
+      name: "Virgil van Dijk",
+      number: 4,
+      position: "DEFENDER" as const,
+      team: "LIV",
+    },
+    {
+      name: "Trent Alexander-Arnold",
+      number: 66,
+      position: "DEFENDER" as const,
+      team: "LIV",
+    },
+    {
+      name: "Dominik Szoboszlai",
+      number: 8,
+      position: "MIDFIELDER" as const,
+      team: "LIV",
+    },
+    {
+      name: "Alexis Mac Allister",
+      number: 10,
+      position: "MIDFIELDER" as const,
+      team: "LIV",
+    },
+    {
+      name: "Mohamed Salah",
+      number: 11,
+      position: "FORWARD" as const,
+      team: "LIV",
+    },
 
     // PSG
-    { name: "Gianluigi Donnarumma", number: 99, position: "GOALKEEPER" as const, team: "PSG" },
-    { name: "Achraf Hakimi", number: 2, position: "DEFENDER" as const, team: "PSG" },
-    { name: "Marquinhos", number: 5, position: "DEFENDER" as const, team: "PSG" },
-    { name: "Vitinha", number: 17, position: "MIDFIELDER" as const, team: "PSG" },
-    { name: "Warren Zaire-Emery", number: 33, position: "MIDFIELDER" as const, team: "PSG" },
-    { name: "Ousmane Dembele", number: 10, position: "FORWARD" as const, team: "PSG" },
+    {
+      name: "Gianluigi Donnarumma",
+      number: 99,
+      position: "GOALKEEPER" as const,
+      team: "PSG",
+    },
+    {
+      name: "Achraf Hakimi",
+      number: 2,
+      position: "DEFENDER" as const,
+      team: "PSG",
+    },
+    {
+      name: "Marquinhos",
+      number: 5,
+      position: "DEFENDER" as const,
+      team: "PSG",
+    },
+    {
+      name: "Vitinha",
+      number: 17,
+      position: "MIDFIELDER" as const,
+      team: "PSG",
+    },
+    {
+      name: "Warren Zaire-Emery",
+      number: 33,
+      position: "MIDFIELDER" as const,
+      team: "PSG",
+    },
+    {
+      name: "Ousmane Dembele",
+      number: 10,
+      position: "FORWARD" as const,
+      team: "PSG",
+    },
   ];
 
   const players: Record<string, string> = {};
@@ -93,7 +263,7 @@ async function main() {
       data: {
         name: p.name,
         number: p.number,
-        position: p.position,
+        // position: p.position,
         teamId: teams[p.team],
       },
     });
@@ -121,12 +291,42 @@ async function main() {
 
   await prisma.matchEvent.createMany({
     data: [
-      { matchId: match1.id, playerId: players["Erling Haaland"], type: "GOAL", minute: 12 },
-      { matchId: match1.id, playerId: players["Kevin De Bruyne"], type: "ASSIST", minute: 12 },
-      { matchId: match1.id, playerId: players["Vinicius Jr"], type: "GOAL", minute: 34 },
-      { matchId: match1.id, playerId: players["Phil Foden"], type: "GOAL", minute: 56 },
-      { matchId: match1.id, playerId: players["Erling Haaland"], type: "GOAL", minute: 78 },
-      { matchId: match1.id, playerId: players["Dani Carvajal"], type: "YELLOW_CARD", minute: 45 },
+      {
+        matchId: match1.id,
+        playerId: players["Erling Haaland"],
+        type: "GOAL",
+        minute: 12,
+      },
+      {
+        matchId: match1.id,
+        playerId: players["Kevin De Bruyne"],
+        type: "ASSIST",
+        minute: 12,
+      },
+      {
+        matchId: match1.id,
+        playerId: players["Vinicius Jr"],
+        type: "GOAL",
+        minute: 34,
+      },
+      {
+        matchId: match1.id,
+        playerId: players["Phil Foden"],
+        type: "GOAL",
+        minute: 56,
+      },
+      {
+        matchId: match1.id,
+        playerId: players["Erling Haaland"],
+        type: "GOAL",
+        minute: 78,
+      },
+      {
+        matchId: match1.id,
+        playerId: players["Dani Carvajal"],
+        type: "YELLOW_CARD",
+        minute: 45,
+      },
     ],
   });
 
@@ -146,12 +346,42 @@ async function main() {
 
   await prisma.matchEvent.createMany({
     data: [
-      { matchId: match2.id, playerId: players["Harry Kane"], type: "GOAL", minute: 15 },
-      { matchId: match2.id, playerId: players["Robert Lewandowski"], type: "GOAL", minute: 30 },
-      { matchId: match2.id, playerId: players["Jamal Musiala"], type: "GOAL", minute: 52 },
-      { matchId: match2.id, playerId: players["Pedri"], type: "GOAL", minute: 67 },
-      { matchId: match2.id, playerId: players["Pedri"], type: "ASSIST", minute: 30 },
-      { matchId: match2.id, playerId: players["Gavi"], type: "YELLOW_CARD", minute: 72 },
+      {
+        matchId: match2.id,
+        playerId: players["Harry Kane"],
+        type: "GOAL",
+        minute: 15,
+      },
+      {
+        matchId: match2.id,
+        playerId: players["Robert Lewandowski"],
+        type: "GOAL",
+        minute: 30,
+      },
+      {
+        matchId: match2.id,
+        playerId: players["Jamal Musiala"],
+        type: "GOAL",
+        minute: 52,
+      },
+      {
+        matchId: match2.id,
+        playerId: players["Pedri"],
+        type: "GOAL",
+        minute: 67,
+      },
+      {
+        matchId: match2.id,
+        playerId: players["Pedri"],
+        type: "ASSIST",
+        minute: 30,
+      },
+      {
+        matchId: match2.id,
+        playerId: players["Gavi"],
+        type: "YELLOW_CARD",
+        minute: 72,
+      },
     ],
   });
 
@@ -171,9 +401,24 @@ async function main() {
 
   await prisma.matchEvent.createMany({
     data: [
-      { matchId: match3.id, playerId: players["Mohamed Salah"], type: "GOAL", minute: 23 },
-      { matchId: match3.id, playerId: players["Trent Alexander-Arnold"], type: "ASSIST", minute: 23 },
-      { matchId: match3.id, playerId: players["Achraf Hakimi"], type: "YELLOW_CARD", minute: 38 },
+      {
+        matchId: match3.id,
+        playerId: players["Mohamed Salah"],
+        type: "GOAL",
+        minute: 23,
+      },
+      {
+        matchId: match3.id,
+        playerId: players["Trent Alexander-Arnold"],
+        type: "ASSIST",
+        minute: 23,
+      },
+      {
+        matchId: match3.id,
+        playerId: players["Achraf Hakimi"],
+        type: "YELLOW_CARD",
+        minute: 38,
+      },
     ],
   });
 
@@ -220,7 +465,12 @@ async function main() {
 
   const allTeamIds = Object.values(teams);
   for (const teamId of allTeamIds) {
-    let played = 0, won = 0, drawn = 0, lost = 0, goalsFor = 0, goalsAgainst = 0;
+    let played = 0,
+      won = 0,
+      drawn = 0,
+      lost = 0,
+      goalsFor = 0,
+      goalsAgainst = 0;
 
     finishedMatches.forEach((m) => {
       if (m.homeTeamId === teamId) {
